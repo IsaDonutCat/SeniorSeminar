@@ -6,6 +6,12 @@
 - There are 5 classrooms per time slot. (25 seminars in total). Each classroom can hold up to 16 students. 
 - Students cannot repeat a session. 
 
+# To-Do next time:
+- **Reorganize the csvs**
+    - Split them into two, one seminar and one student
+    - remove the string seminar choices from the students
+
+# Planning:
 **Classes:**
 *= Tester*
     - Reads in the files, creates everything in ArrayLists
