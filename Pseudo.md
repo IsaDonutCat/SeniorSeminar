@@ -6,35 +6,59 @@
 - There are 5 classrooms per time slot. (25 seminars in total). Each classroom can hold up to 16 students. 
 - Students cannot repeat a session. 
 
-# To-Do next time:
-- **Reorganize the csvs**
-    - Split them into two, one seminar and one student
-    - remove the string seminar choices from the students
+# CSV Format:
+**students.csv:**
+- email (- the @countryday.net part)
+- Full Name
+- 1st seminar pick ID
+- 2nd seminar pick ID
+- 3rd seminar pick ID
+- 4th seminar pick ID
+- 5th seminar pick ID
+**seminars.csv:**
+- seminar ID
+- seminar name
+- presenter name
+
+
 
 # Planning:
+**Polymorphism**
+- Person class
+- Occupied at this time? bool[5]
+- name
+- extends student
+    - 1st Choice ID
+    - 2nd Choice ID
+    - 3rd Choice ID
+    - 4th Choice ID
+    - 5th Choice ID
+
+    - 1st Seminar ID
+    - 2nd Seminar ID
+    - 3rd Seminar ID
+    - 4th Seminar ID
+    - 5th Seminar ID
+- extends Presenter
+    - if occupied[x] = true -> already something is occupied && want to schedule at slot [y], set isBooked = true (no more new sessions can be booked)
 **Classes:**
-*= Tester*
+*- Tester*
     - Reads in the files, creates everything in ArrayLists
-    - Needs to check to make sure that a 
 *- Student*
     - Name
-    - Email
-    - 2nd Email
-    - Student ID
-    - Submit Time
+    - Email name
 
-    - 1st Choice
-    - 2nd Choice
-    - 3rd Choice
-    - 4th Choice
-    - 5th Choice
+    - 1st Choice ID
+    - 2nd Choice ID
+    - 3rd Choice ID
+    - 4th Choice ID
+    - 5th Choice ID
 
-    - 1st Seminar
-    - 2nd Seminar
-    - 3rd Seminar
-    - 4th Seminar
-    - 5th Seminar
-
+    - 1st Seminar ID
+    - 2nd Seminar ID
+    - 3rd Seminar ID
+    - 4th Seminar ID
+    - 5th Seminar ID
     
     - Two constructors. one with everything and one for those who haven't selected any. for them, their seminar stuff is -1
 *- Seminar*
