@@ -28,17 +28,22 @@
 - Occupied at this time? bool[5]
 - name
 - extends student
-    - 1st Choice ID
-    - 2nd Choice ID
-    - 3rd Choice ID
-    - 4th Choice ID
-    - 5th Choice ID
+    - int[] choices
+        - 1st Choice ID
+        - 2nd Choice ID
+        - 3rd Choice ID
+        - 4th Choice ID
+        - 5th Choice ID
 
-    - 1st Seminar ID
-    - 2nd Seminar ID
-    - 3rd Seminar ID
-    - 4th Seminar ID
-    - 5th Seminar ID
+    - String[] Seminars
+        - 1st Seminar Name 
+        - 2nd Seminar Name
+        - 3rd Seminar Name
+        - 4th Seminar Name
+        - 5th Seminar Name
+ 
+    - public boolean needsAssign(return !(occ[1]&&occ[2]&&occ[3]&&[occ]4&&[occ]5))
+    - public void assignSession ()
 - extends Presenter
     - if occupied[x] = true -> already something is occupied && want to schedule at slot [y], set isBooked = true (no more new sessions can be booked)
 **Classes:**
