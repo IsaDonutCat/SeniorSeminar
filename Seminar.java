@@ -37,7 +37,7 @@ public class Seminar
         return rooms[ind];
     }
 
-    public boolean hasRoom()
+    public boolean hasSpot()
     {
         return (srCt < 16);
     } 
