@@ -5,6 +5,7 @@ public class Student
     private String name;
     private String email;
     private Seminar[] semis = new Seminar[5];
+    private boolean[] isBusy = new boolean[5];
 
     public Student (String inEmail, String inName, int inChoice1, int inChoice2, int inChoice3, int inChoice4, int inChoice5)
     {
@@ -38,9 +39,14 @@ public class Student
             return -1;
     }
 
-    public void assignChoice (int ind, Seminar inSemi)
+    public boolean assignChoice (int ind, Seminar inSemi)
     {
+        if (isBusy[ind])
+            return false;
+
         semis[ind] = inSemi;
+        isBusy[ind] = true;
+        return true;
     }
 
     public void printSched()

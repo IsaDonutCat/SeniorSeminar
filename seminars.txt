@@ -1,18 +1,18 @@
-1,Adventure Calls: The Benefits and Challenges of Study Abroad,Gunnar Lykins		
-2,Be Your Own Boss: Entrepreneurship Opportunities in College and Beyond,Edwin Sam		
-3,Business Clubs: Campus Involvement and Professional Development,Blake Lykins		
-4,College Decisions: Choosing a Historically Black College over a Predominately White Institution,Liah Apatira		
-5,Community Organizing and College: Participating in Your College's Democracy,Anna Beyette		
-6,Community Service and Volunteering: Making an Impact as a College Student,Nathan Grant		
-7,Conquering the Concrete Jungle,Madeleine Morales		
-8,Co-Ops and Engineering Internships: Gaining Professional Experience,Gunnar Lykins		
-9,Emergency Medical Technician: Working in the Back of an Ambulance,Grace Pettengill		
-10,Greek Life: From Animal House to Developing Tomorrow's Leaders,Blake Lykins		
-11,Making an Impact: Being a Leader in Student Government,Roshan Chandrakumar		
-12,On-Campus Recruiting and the Coveted Junior Year Internship in Finance,Mia Fatuzzo		
-13,So You Want to Play with Swords: Performance Martial Arts and Club Leadership,Claire Beyette		
-14,The Ins and Outs of Engineering Internships,Elizabeth Grace		
-15,The Road Less Traveled: Finding the Right Path for You,Ishan Ghildyal		
-16,Thriving in a Highly Competitive College Environment,Mia Fatuzzo		
-17,To Read or Not To Read? Interning in Publishing,Claire Beyette		
-18,What Is Research When It's Not a Resume Builder?,Elizabeth Johnson		
+Adventure Calls: The Benefits and Challenges of Study Abroad,Gunnar Lykins		
+Be Your Own Boss: Entrepreneurship Opportunities in College and Beyond,Edwin Sam		
+Business Clubs: Campus Involvement and Professional Development,Blake Lykins		
+College Decisions: Choosing a Historically Black College over a Predominately White Institution,Liah Apatira		
+Community Organizing and College: Participating in Your College's Democracy,Anna Beyette		
+Community Service and Volunteering: Making an Impact as a College Student,Nathan Grant		
+Conquering the Concrete Jungle,Madeleine Morales		
+Co-Ops and Engineering Internships: Gaining Professional Experience,Gunnar Lykins		
+Emergency Medical Technician: Working in the Back of an Ambulance,Grace Pettengill		
+Greek Life: From Animal House to Developing Tomorrow's Leaders,Blake Lykins		
+Making an Impact: Being a Leader in Student Government,Roshan Chandrakumar		
+On-Campus Recruiting and the Coveted Junior Year Internship in Finance,Mia Fatuzzo		
+So You Want to Play with Swords: Performance Martial Arts and Club Leadership,Claire Beyette		
+The Ins and Outs of Engineering Internships,Elizabeth Grace		
+The Road Less Traveled: Finding the Right Path for You,Ishan Ghildyal		
+Thriving in a Highly Competitive College Environment,Mia Fatuzzo		
+To Read or Not To Read? Interning in Publishing,Claire Beyette		
+What Is Research When It's Not a Resume Builder?,Elizabeth Johnson		

@@ -40,8 +40,10 @@ public class Tester
 
             while (inptr.hasNextLine())
             {
-                    
+                    row = inptr.nextLine().split(",");
+                    semis.add(new Seminar(row[0],row[1]));
             }
+            inptr.close();
         }
         catch(FileNotFoundException e)
         {
