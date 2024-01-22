@@ -23,7 +23,7 @@ public class Seminar
 
     public void assign(int slotTime, int roomNum)
     {
-        lect.assign(slotTime);
+        lect.assign(this, slotTime);
         rooms[slotTime] = roomNum;
     }
 
