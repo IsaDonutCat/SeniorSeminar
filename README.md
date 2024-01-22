@@ -8,4 +8,9 @@ Repository for Q3 Senior Seminar coding assignment.
 - someone please get git and homebrew to cooperate i'm going insane
 
 # January 22nd, 2024
-- Reorganizing the system to instead rank the seminars on how many students want them, to optimize choices. 
+- Reorganizing the system to instead rank the seminars on how many students want them, to optimize choices.
+- Wrote code for student, seminar, and presenter classes.
+    - seminar asks whether the presenter is busy, since the presenter can have multiple classes
+    - student constructor is overloaded to account for those who didn't select
+    - a boolean inside student makes it easy to see if there's a choice or not - returns -1 if there isn't. 
+    - wrote an equals() method inside student to hopefully be able to use indexOf() from arraylist (thanks javaDoc) 
