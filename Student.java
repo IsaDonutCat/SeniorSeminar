@@ -53,4 +53,9 @@ public class Student
         System.out.println("Session 4: " + semis[3].getName() + "(Room " + semis[3].getRoom() + ")");
         System.out.println("Session 5: " + semis[4].getName() + "(Room " + semis[4].getRoom() + ")");
     }
+
+    public boolean equals(String compName)
+    {
+        return compName.equals(name);
+    }
 }
