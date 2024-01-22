@@ -4,8 +4,8 @@ public class Seminar
 {
     private Presenter lect;
     private String name;
-    private boolean[] occupied = new boolean[5];
     private int srCt = 0;
+    private int[] rooms = {-1,-1,-1,-1,-1};
 
     public Seminar (String name, String presenter)
     {
@@ -18,7 +18,23 @@ public class Seminar
         if (lect.isBusy(slotTime))
             return false;
         else
-            occupied[slotTime] = true;
+            return true;
+    }
+
+    public void assign(int slotTime, int roomNum)
+    {
+        lect.assign(slotTime);
+        rooms[slotTime] = roomNum;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getRoom(int ind)
+    {
+        return rooms[ind];
     }
 
     public boolean hasRoom()
