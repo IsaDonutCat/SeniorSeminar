@@ -10,12 +10,13 @@ public class Tester
     {
         try
         {
-            if (args.length != 2)
+            if (args.length != 2) //test to make sure two arguments exist
             {
                 System.out.println("java Tester students.csv seminars.csv");
                 return;
             }
 
+            //load in the students
             File rawStudents = new File(args[0]);
             Scanner inptr = new Scanner(rawStudents);
             String[] row;
@@ -23,20 +24,21 @@ public class Tester
             while (inptr.hasNextLine())
             {
                 row = inptr.nextLine().split(",");
-                if (row.length == 7)
+                if (row.length == 7) // add the students who have choices
                     seniors.add(new Student(row[0], row[1], row[2], row[3], row[4], row[5], row[6]));
-                else
+                else //the students who didn't choose
                     seniors.add(new Student(row[0], row[1]));
             }
 
-            inptr.close();
+            inptr.close(); //close reading of this file
 
+            //load in the seminars
             File rawSeminars = new File(args[1]);
             inptr = new Scanner(rawSeminars);
 
             while (inptr.hasNextLine())
             {
-                
+                    
             }
         }
         catch(FileNotFoundException e)

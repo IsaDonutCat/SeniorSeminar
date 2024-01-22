@@ -6,3 +6,6 @@ Repository for Q3 Senior Seminar coding assignment.
 
 # January 18th, 2024
 - someone please get git and homebrew to cooperate i'm going insane
+
+# January 22nd, 2024
+- Reorganizing the system to instead rank the seminars on how many students want them, to optimize choices. 
