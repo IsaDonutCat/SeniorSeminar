@@ -14,7 +14,7 @@ public class Presenter
         return isBusy[ind];
     }
 
-    public void assignSemi (Seminar semi, int ind)
+    public void assign(Seminar semi, int ind)
     {
         isBusy[ind] = true;
         semis[ind] = semi;
