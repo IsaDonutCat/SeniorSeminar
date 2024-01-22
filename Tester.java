@@ -27,7 +27,7 @@ public class Tester
             {
                 row = inptr.nextLine().split(",");
                 if (row.length == 7) // add the students who have choices
-                    seniors.add(new Student(row[0], row[1], row[2], row[3], row[4], row[5], row[6]));
+                    seniors.add(new Student(row[0], row[1], Integer.parseInt(row[2]), Integer.parseInt(row[3]), Integer.parseInt(row[4]), Integer.parseInt(row[5]), Integer.parseInt(row[6])));
                 else //the students who didn't choose
                     seniors.add(new Student(row[0], row[1]));
             }
