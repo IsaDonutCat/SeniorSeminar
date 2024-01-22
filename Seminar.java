@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Seminar
 {
     private Presenter lect;
@@ -26,7 +24,7 @@ public class Seminar
 
     public boolean extraSess()
     {
-        return (prefs%16 == 0 || prefs%16 >7);
+        return (prefs % 16 == 0 || prefs % 16 > 7);
     }
 
     public boolean canAssign(int slotTime)
