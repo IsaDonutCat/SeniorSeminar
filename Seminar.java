@@ -6,11 +6,27 @@ public class Seminar
     private String name;
     private int srCt = 0;
     private int[] rooms = {-1,-1,-1,-1,-1};
+    private int prefs = 0;
 
     public Seminar (String name, String presenter)
     {
         lect = new Presenter(presenter);
         this.name = name;
+    }
+
+    public void addPref()
+    {
+        prefs++;
+    }
+
+    public int getPref()
+    {
+        return prefs;
+    }
+
+    public boolean extraSess()
+    {
+        return (prefs%16 == 0 || prefs%16 >7);
     }
 
     public boolean canAssign(int slotTime)
