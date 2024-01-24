@@ -44,7 +44,17 @@ public class Tester
                     semis.add(new Seminar(row[0],row[1]));
             }
 
-            inptr.close();
+            inptr.close(); //close scanner for good, has finished loading. 
+
+            for (Student x : seniors) //tallys up prefs for all sessions. 
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    semis.get(x.getChoiceID(j)).addPref();
+                }
+            }
+
+            
         }
         catch(FileNotFoundException e)
         {

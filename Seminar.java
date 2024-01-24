@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class Seminar
 {
     private Presenter lect;
     private String name;
-    private int srCt = 0;
     private int[] rooms = {-1,-1,-1,-1,-1};
     private int prefs = 0;
+    private ArrayList<String> attendees = new ArrayList<String>();
 
     public Seminar (String name, String presenter)
     {
@@ -17,9 +19,12 @@ public class Seminar
         prefs++;
     }
 
-    public int getPref()
+    public int sessCt()
     {
-        return prefs;
+        if (prefs % 16 >= 8)
+            return prefs/16 + 1;
+        else
+            return prefs/16;
     }
 
     public boolean extraSess()
@@ -53,11 +58,11 @@ public class Seminar
 
     public boolean hasSpot()
     {
-        return (srCt < 16);
+        return (attendees.size() < 16);
     } 
 
-    public void addStudent()
+    public void addStudent(String stuName)
     {
-        srCt++;
+        attendees.add(stuName);
     }
 }

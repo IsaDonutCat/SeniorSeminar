@@ -30,13 +30,9 @@ public class Student
         email = inEmail;
     }
 
-
-    public int findChoice (int ind)
+    public int getChoiceID (int ind)
     {
-        if (hasChosen)
-            return choices[ind];
-        else
-            return -1;
+        return choices[ind];
     }
 
     public boolean assignChoice (int ind, Seminar inSemi)

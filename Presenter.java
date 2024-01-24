@@ -22,8 +22,10 @@ public class Presenter
 
     public void printSched()
     {
+        int len = semis.length;
+
         System.out.println (name);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < len; i++)
         {
             if (semis[i] != null) //if there's something there
             {
