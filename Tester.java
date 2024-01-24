@@ -48,13 +48,16 @@ public class Tester
 
             for (Student x : seniors) //tallys up prefs for all sessions. 
             {
-                for (int j = 0; j < 5; j++)
+                if (x.hasChosen())
                 {
-                    semis.get(x.getChoiceID(j)).addPref();
+                    for (int j = 0; j < 5; j++)
+                    {
+                        semis.get(x.getChoiceID(j)).addPref();
+                    }
                 }
             }
 
-            
+
         }
         catch(FileNotFoundException e)
         {

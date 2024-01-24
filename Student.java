@@ -60,4 +60,7 @@ public class Student
     {
         return compName.equals(name);
     }
+
+    public boolean hasChosen()
+    {return hasChosen;}
 }
