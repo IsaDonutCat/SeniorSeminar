@@ -7,6 +7,12 @@ public class Seminar
     private int[] rooms = {-1,-1,-1,-1,-1};
     private int prefs = 0;
     private ArrayList<String> attendees = new ArrayList<String>();
+    private int ranking;
+
+    public int getPref()
+    {
+        return prefs;
+    }
 
     public Seminar (String name, String presenter)
     {

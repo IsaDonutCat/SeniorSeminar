@@ -7,7 +7,7 @@ public class Tester
 {
     public static ArrayList<Student> seniors = new ArrayList<Student>();
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
-
+    public static ArrayList<Seminar> sortedSemis = new ArrayList<Seminar>(); 
     public static void main (String[] args)
     {
         try
@@ -69,6 +69,17 @@ public class Tester
 
     public static void sortSemis()
     {
-        
+        int index;
+        for (Seminar seme : semis)
+        {
+            index = sortedSemis.size();
+
+            while (index != 0 && seme.getPref() > sortedSemis.get(index-1).getPref())
+            {
+                index--;
+            }
+
+            sortedSemis.add(index, seme);
+        }
     }
 }
