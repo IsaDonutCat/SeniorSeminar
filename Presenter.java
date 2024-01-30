@@ -29,10 +29,13 @@ public class Presenter
         {
             if (semis[i] != null) //if there's something there
             {
-                System.out.println("Session " + (i+1) + ": " + semis[i].getName() + " (Room " + semis[i].getRoom(i) + ")");
+                System.out.println("Session " + (i+1) + ": " + semis[i].getName() + " (Room " + semis[i].getRoom() + ")");
             }
         }
     }
 
-
+    public String getName()
+    {
+        return name;
+    }
 }

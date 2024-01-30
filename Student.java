@@ -49,11 +49,11 @@ public class Student
     {
         System.out.println(name + "'s Schedule");
         System.out.println(email + "@countryday.net");
-        System.out.println("Session 1: " + semis[0].getName() + "(Room " + semis[0].getRoom(0) + ")");
-        System.out.println("Session 2: " + semis[1].getName() + "(Room " + semis[1].getRoom(1) + ")");
-        System.out.println("Session 3: " + semis[2].getName() + "(Room " + semis[2].getRoom(2) + ")");
-        System.out.println("Session 4: " + semis[3].getName() + "(Room " + semis[3].getRoom(3) + ")");
-        System.out.println("Session 5: " + semis[4].getName() + "(Room " + semis[4].getRoom(4) + ")");
+        System.out.println("Session 1: " + semis[0].getName() + "(Room " + semis[0].getRoom() + ")");
+        System.out.println("Session 2: " + semis[1].getName() + "(Room " + semis[1].getRoom() + ")");
+        System.out.println("Session 3: " + semis[2].getName() + "(Room " + semis[2].getRoom() + ")");
+        System.out.println("Session 4: " + semis[3].getName() + "(Room " + semis[3].getRoom() + ")");
+        System.out.println("Session 5: " + semis[4].getName() + "(Room " + semis[4].getRoom() + ")");
     }
 
     public boolean equals(String compName)

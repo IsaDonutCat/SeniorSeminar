@@ -8,11 +8,7 @@ public class Tester
     public static ArrayList<Student> seniors = new ArrayList<Student>();
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
     public static ArrayList<Seminar> sortedSemis = new ArrayList<Seminar>(); 
-    public static Integer[][] totalSched = {{-1,-1,-1,-1,-1},
-                                            {-1,-1,-1,-1,-1},
-                                            {-1,-1,-1,-1,-1},
-                                            {-1,-1,-1,-1,-1},
-                                            {-1,-1,-1,-1,-1}};
+    public static Seminar[][] totalSched = new Seminar[5][5];
     public static void main (String[] args)
     {
         try
@@ -95,9 +91,40 @@ public class Tester
 
     public static void assignSemis()
     {
+        int numWant;
+        int coords[];
+
         for (Seminar uke : sortedSemis)
         {
-            
+            numWant = uke.sessCt();
+            numWant = Math.min(5,numWant); //know this will not be the case but just in case
+
+            while (numWant > 0 && getEmpty()[0] >= 0)
+            {
+                
+            }
         }
+
+        sortedSemis.clear();
     }
+
+    public static int[] getEmpty() //return int[2] of (row, column) for index
+    {   
+        int[] ans = {-1,-1};
+
+        for (int ro = 0; ro < 5; ro++)
+        {
+            for (int co = 0; co < 5; co++)
+            {
+                if(totalSched[ro][co] == null)
+                {
+                    ans[0] = ro;
+                    ans[1] = co;
+                    return ans;
+                }
+            }
+        }
+
+        return ans;
+    } 
 }
