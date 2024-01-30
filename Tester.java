@@ -8,6 +8,11 @@ public class Tester
     public static ArrayList<Student> seniors = new ArrayList<Student>();
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
     public static ArrayList<Seminar> sortedSemis = new ArrayList<Seminar>(); 
+    public static Integer[][] totalSched = {{-1,-1,-1,-1,-1},
+                                            {-1,-1,-1,-1,-1},
+                                            {-1,-1,-1,-1,-1},
+                                            {-1,-1,-1,-1,-1},
+                                            {-1,-1,-1,-1,-1}};
     public static void main (String[] args)
     {
         try
@@ -57,7 +62,7 @@ public class Tester
                 }
             }
 
-
+            sortSemis();
         }
         catch(FileNotFoundException e)
         {
@@ -80,6 +85,19 @@ public class Tester
             }
 
             sortedSemis.add(index, seme);
+        }
+        semis.clear();
+        /*for (Seminar uke : sortedSemis)
+        {
+            System.out.println(uke.getName() + " " + uke.getPref());
+        }*/
+    }
+
+    public static void assignSemis()
+    {
+        for (Seminar uke : sortedSemis)
+        {
+            
         }
     }
 }
