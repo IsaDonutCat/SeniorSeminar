@@ -46,19 +46,6 @@ public class Tester
             }
 
             inptr.close(); //close scanner for good, has finished loading. 
-
-            for (Student x : seniors) //tallys up prefs for all sessions. 
-            {
-                if (x.hasChosen())
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        semis.get(x.getChoiceID(j)).addPref();
-                    }
-                }
-            }
-
-            sortSemis();
         }
         catch(FileNotFoundException e)
         {
@@ -66,6 +53,20 @@ public class Tester
             e.printStackTrace();
             return;   
         }
+
+        for (Student x : seniors) //tallys up prefs for all sessions. 
+        {
+            if (x.hasChosen())
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    semis.get(x.getChoiceID(j)).addPref();
+                }
+            }
+        }
+
+        sortSemis();
+        assignSemis();
     }
 
     public static void sortSemis()
@@ -92,17 +93,32 @@ public class Tester
     public static void assignSemis()
     {
         int numWant;
-        int coords[];
-
+        int coords[] = getEmpty();
+        System.out.println("coords" + coords[0] + " " + coords[1]);
         for (Seminar uke : sortedSemis)
         {
             numWant = uke.sessCt();
             numWant = Math.min(5,numWant); //know this will not be the case but just in case
+            System.out.println(uke.getName());
 
-            while (numWant > 0 && getEmpty()[0] >= 0)
+            while (numWant > 0 && coords[0] >= 0 && uke.canAssign(coords[0]))
             {
-                
+                totalSched[coords[0]][coords[1]] = uke;
+                uke.assign(coords[0],coords[1]);
+                System.out.println("assigned @ " + coords[0] + " " + coords[1]);
+                numWant--;
+                coords = getEmpty();
+                System.out.println("coords" + coords[0] + " " + coords[1]);
             }
+        }
+
+        for(int rowCt = 0; rowCt < 5; rowCt++)//for (Seminar[] rowS : totalSched)
+        {
+            System.out.println(rowCt);
+            for(int colCt = 0; colCt < 5; colCt++)//for (Seminar colS : rowS)
+                System.out.println(totalSched[rowCt][colCt].getName());
+            
+            System.out.println("\n\n\n");
         }
 
         sortedSemis.clear();
@@ -112,16 +128,18 @@ public class Tester
     {   
         int[] ans = {-1,-1};
 
-        for (int ro = 0; ro < 5; ro++)
+        for (int co = 0; co < 5; co++)
         {
-            for (int co = 0; co < 5; co++)
+            for (int ro = 0; ro < 5; ro++)
             {
                 if(totalSched[ro][co] == null)
                 {
                     ans[0] = ro;
                     ans[1] = co;
+                    
                     return ans;
                 }
+                System.out.println("checked" + ro + " " + co);
             }
         }
 

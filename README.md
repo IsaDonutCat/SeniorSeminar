@@ -13,4 +13,14 @@ Repository for Q3 Senior Seminar coding assignment.
     - seminar asks whether the presenter is busy, since the presenter can have multiple classes
     - student constructor is overloaded to account for those who didn't select
     - a boolean inside student makes it easy to see if there's a choice or not - returns -1 if there isn't. 
-    - wrote an equals() method inside student to hopefully be able to use indexOf() from arraylist (thanks javaDoc) 
+    - wrote an equals() method inside student to hopefully be able to use indexOf() from arraylist (thanks javaDoc) \
+
+# January 24th, 2024
+
+# January 26th, 2024
+- Was not in class
+
+# January 30th, 2024
+- Created a ranking system
+- Changed Seminar to be a unique instance for each session
+- Began writing an assigning function but did not want to access last row and column for some reason.
