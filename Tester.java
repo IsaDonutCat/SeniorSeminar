@@ -94,30 +94,35 @@ public class Tester
     {
         int numWant;
         int coords[] = getEmpty();
-        System.out.println("coords" + coords[0] + " " + coords[1]);
+        int semCtr = 0;
+        //System.out.println("coords" + coords[0] + " " + coords[1]);
         for (Seminar uke : sortedSemis)
         {
             numWant = uke.sessCt();
             numWant = Math.min(5,numWant); //know this will not be the case but just in case
-            System.out.println(uke.getName());
-
+            //System.out.println(uke.getName());
+            //System.out.println(numWant);
             while (numWant > 0 && coords[0] >= 0 && uke.canAssign(coords[0]))
             {
                 totalSched[coords[0]][coords[1]] = uke;
                 uke.assign(coords[0],coords[1]);
-                System.out.println("assigned @ " + coords[0] + " " + coords[1]);
+                //System.out.println("assigned @ " + coords[0] + " " + coords[1]);
                 numWant--;
                 coords = getEmpty();
-                System.out.println("coords" + coords[0] + " " + coords[1]);
+                //System.out.println("coords" + coords[0] + " " + coords[1]);
+                semCtr++;
+                //System.out.println("assigned semi # " + semCtr);
             }
         }
 
         for(int rowCt = 0; rowCt < 5; rowCt++)//for (Seminar[] rowS : totalSched)
         {
-            System.out.println(rowCt);
+            //System.out.println(rowCt);
             for(int colCt = 0; colCt < 5; colCt++)//for (Seminar colS : rowS)
+            {
+                //System.out.println(rowCt + " " + colCt);
                 System.out.println(totalSched[rowCt][colCt].getName());
-            
+            }
             System.out.println("\n\n\n");
         }
 
@@ -139,7 +144,7 @@ public class Tester
                     
                     return ans;
                 }
-                System.out.println("checked" + ro + " " + co);
+                //System.out.println("checked" + ro + " " + co + " and also the ans is currently " + ans[0] + " " + ans[1]);
             }
         }
 

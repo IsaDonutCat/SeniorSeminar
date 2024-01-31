@@ -26,7 +26,7 @@ public class Seminar
 
     public int sessCt()
     {
-        if (prefs % 16 >= 8)
+        if (prefs % 16 >= 5)
             return prefs/16 + 1;
         else
             return prefs/16;
