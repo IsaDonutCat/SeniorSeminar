@@ -24,3 +24,8 @@ Repository for Q3 Senior Seminar coding assignment.
 - Created a ranking system
 - Changed Seminar to be a unique instance for each session
 - Began writing an assigning function but did not want to access last row and column for some reason.
+
+# January 31st, 2024
+- Finished the sorting (it turns out that there were not enough sessions given)
+- Finished assigning everyone to their seminars
+- Starting to look into how to search (possibly a parallel string ArrayList to use indexOf for?);

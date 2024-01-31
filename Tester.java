@@ -8,6 +8,7 @@ public class Tester
     public static ArrayList<Student> seniors = new ArrayList<Student>();
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
     public static ArrayList<Seminar> sortedSemis = new ArrayList<Seminar>(); 
+    public static ArrayList<String> stuNames = new ArrayList<String>();
     public static Seminar[][] totalSched = new Seminar[5][5];
     public static void main (String[] args)
     {
@@ -67,6 +68,7 @@ public class Tester
 
         sortSemis();
         assignSemis();
+        assignStu();
     }
 
     public static void sortSemis()
@@ -83,7 +85,6 @@ public class Tester
 
             sortedSemis.add(index, seme);
         }
-        semis.clear();
         /*for (Seminar uke : sortedSemis)
         {
             System.out.println(uke.getName() + " " + uke.getPref());
@@ -150,4 +151,46 @@ public class Tester
 
         return ans;
     } 
+
+    public static void assignStu()
+    {
+        for (Student choSen : seniors)
+        {   
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        if (matchChoice(choSen, totalSched[i][j].getName()) >= 0 && totalSched[i][j].hasSpot())
+                        {
+                            totalSched[i][j].addStudent(choSen.getName());
+                            choSen.assignChoice(i, totalSched[i][j]);
+                            choSen.gotChoice(matchChoice(choSen, totalSched[i][j].getName()));
+                            break;
+                        }
+                        else if (j == 4)//final slot, most unwanted
+                        {   
+                            if (!totalSched[i][j].hasSpot())
+                            {
+                                totalSched[i][j].prin(j);
+                            }
+                            totalSched[i][j].addStudent(choSen.getName());
+                            choSen.assignChoice(i, totalSched[i][j]);
+                            break;
+                        }
+                    }
+                }
+            choSen.printSched();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        }
+    }
+
+    public static int matchChoice (Student choSenior, String semiNarme)
+    {
+        for (int k = 0; k < 5; k++)
+        {
+            if (choSenior.getChoiceID(k) >= 0 && semis.get(choSenior.getChoiceID(k)).equals(semiNarme))
+                return k;
+        }
+        return -1;
+    }
 }

@@ -19,6 +19,11 @@ public class Seminar
         this.name = name;
     }
 
+    public boolean equals (String nameComp)
+    {
+        return nameComp.equals(name);
+    }
+
     public void addPref()
     {
         prefs++;

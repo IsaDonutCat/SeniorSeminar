@@ -11,7 +11,7 @@ public class Student
     {
         hasChosen = true; //this student has made the 5 choices
 
-        name = inName;
+        name = inName.strip();
         email = inEmail;
 
         //minus 1 accounts for human counting -> array list indexes
@@ -26,9 +26,17 @@ public class Student
     {
         hasChosen = false; //this student has made no choices
 
-        name = inName;
+        name = inName.strip();
         email = inEmail;
     }
+
+    public void gotChoice (int choiceGotten)
+    {
+        choices[choiceGotten] = -1;
+    }
+
+    public String getName()
+    {return name;}
 
     public int getChoiceID (int ind)
     {
