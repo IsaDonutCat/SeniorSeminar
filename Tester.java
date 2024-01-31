@@ -9,6 +9,9 @@ public class Tester
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
     public static ArrayList<Seminar> sortedSemis = new ArrayList<Seminar>(); 
     public static ArrayList<String> stuNames = new ArrayList<String>();
+    public static ArrayList<String> lectNames = new ArrayList<String>();
+    public static ArrayList<Presenter> lecturers = new ArrayList<Presenter>();
+
     public static Seminar[][] totalSched = new Seminar[5][5];
     public static void main (String[] args)
     {
@@ -32,6 +35,8 @@ public class Tester
                     seniors.add(new Student(row[0], row[1], Integer.parseInt(row[2]), Integer.parseInt(row[3]), Integer.parseInt(row[4]), Integer.parseInt(row[5]), Integer.parseInt(row[6])));
                 else //the students who didn't choose
                     seniors.add(new Student(row[0], row[1]));
+                
+                stuNames.add(row[1]);
             }
 
             inptr.close(); //close reading of this file
@@ -42,8 +47,16 @@ public class Tester
 
             while (inptr.hasNextLine())
             {
-                    row = inptr.nextLine().split(",");
-                    semis.add(new Seminar(row[0],row[1]));
+                row = inptr.nextLine().split(",");
+
+                if (!lectNames.contains(row[1]))
+                {
+                    lecturers.add(new Presenter(row[1]));
+                    lectNames.add(row[1]);
+                    System.out.println("added " + row[1]);
+                }
+
+                semis.add(new Seminar(row[0],lecturers.get(lectNames.indexOf(row[1]))));
             }
 
             inptr.close(); //close scanner for good, has finished loading. 
@@ -69,6 +82,61 @@ public class Tester
         sortSemis();
         assignSemis();
         assignStu();
+
+        Scanner inputScanner = new Scanner(System.in);
+        String nextLine;
+        do
+        {
+            System.out.println("Options\n Find Student \n Find Presenter \n Print Total Roster");
+            nextLine = inputScanner.nextLine();
+
+            if (nextLine.equals("Find Student"))
+            {
+                System.out.println("Please enter student's full name:");
+                nextLine = inputScanner.nextLine();
+                if (!stuNames.contains(nextLine))
+                {
+                    System.out.println("Error: Student could not be found.");
+                }
+                else
+                {
+                    seniors.get(stuNames.indexOf(nextLine)).printSched();
+                }
+            }
+            else if (nextLine.equals("Find Presenter"))
+            {
+                System.out.println("Please enter presenter's full name:");
+                nextLine = inputScanner.nextLine();
+                if (!lectNames.contains(nextLine))
+                {
+                    System.out.println("\n\n");
+                    for (String na : lectNames)
+                        System.out.println(na);
+                    System.out.println("Error: Presenter could not be found.");
+                }
+                else
+                {
+                    lecturers.get(lectNames.indexOf(nextLine)).printSched();
+                }
+            }
+            else if (nextLine.equals("Print Total Roster"))
+            {
+                for (int a = 0; a < 5; a++)
+                {
+                    System.out.println("Seminar " + (a+1) + ":");
+                    for (int b = 0; b < 5; b++)
+                    {
+                        System.out.println("\t" + totalSched[a][b].toString(b));
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("Sorry, that does not seem to be a valid option.");
+            }
+        }
+        while (!nextLine.equalsIgnoreCase("exit"));
+        inputScanner.close();
     }
 
     public static void sortSemis()
@@ -95,7 +163,6 @@ public class Tester
     {
         int numWant;
         int coords[] = getEmpty();
-        int semCtr = 0;
         //System.out.println("coords" + coords[0] + " " + coords[1]);
         for (Seminar uke : sortedSemis)
         {
@@ -111,7 +178,6 @@ public class Tester
                 numWant--;
                 coords = getEmpty();
                 //System.out.println("coords" + coords[0] + " " + coords[1]);
-                semCtr++;
                 //System.out.println("assigned semi # " + semCtr);
             }
         }
@@ -156,29 +222,34 @@ public class Tester
     {
         for (Student choSen : seniors)
         {   
-                for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
                 {
-                    for (int j = 0; j < 5; j++)
+                    if (matchChoice(choSen, totalSched[i][j].getName()) >= 0 && totalSched[i][j].hasSpot())
                     {
-                        if (matchChoice(choSen, totalSched[i][j].getName()) >= 0 && totalSched[i][j].hasSpot())
+                        totalSched[i][j].addStudent(choSen.getName());
+                        choSen.assignChoice(i, totalSched[i][j]);
+                        choSen.gotChoice(matchChoice(choSen, totalSched[i][j].getName()));
+                        System.out.println("stopped searching in slot " + i);
+                        break;
+                        
+                    }
+                    else if (j == 4)//final slot, most unwanted
+                    {   
+                        /*while (!totalSched[i][j].hasSpot())
                         {
-                            totalSched[i][j].addStudent(choSen.getName());
-                            choSen.assignChoice(i, totalSched[i][j]);
-                            choSen.gotChoice(matchChoice(choSen, totalSched[i][j].getName()));
-                            break;
-                        }
-                        else if (j == 4)//final slot, most unwanted
-                        {   
-                            if (!totalSched[i][j].hasSpot())
-                            {
-                                totalSched[i][j].prin(j);
-                            }
-                            totalSched[i][j].addStudent(choSen.getName());
-                            choSen.assignChoice(i, totalSched[i][j]);
-                            break;
-                        }
+                            j--;
+                            if (j < 0)
+                            {System.out.println("error");}
+                        }*/
+                        totalSched[i][j].addStudent(choSen.getName());
+                        choSen.assignChoice(i, totalSched[i][j]);
+                        System.out.println("stopped searching in slot " + i);
+                        break;
                     }
                 }
+            }
             choSen.printSched();
             System.out.println("\n\n\n\n\n\n\n\n\n\n");
         }

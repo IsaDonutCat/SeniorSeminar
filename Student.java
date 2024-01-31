@@ -33,6 +33,7 @@ public class Student
     public void gotChoice (int choiceGotten)
     {
         choices[choiceGotten] = -1;
+        System.out.println("choice removed at " + choiceGotten);
     }
 
     public String getName()

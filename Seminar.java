@@ -13,9 +13,9 @@ public class Seminar
         return prefs;
     }
 
-    public Seminar (String name, String presenter)
+    public Seminar (String name, Presenter lectur)
     {
-        lect = new Presenter(presenter);
+        lect = lectur;
         this.name = name;
     }
 
@@ -74,7 +74,7 @@ public class Seminar
         attendees.add(stuName);
     }
 
-    public String prin(int roomNum)
+    public String toString(int roomNum)
     {
         if (attendees.isEmpty())
             return "This seminar does not exist or is not scheduled. ";
@@ -85,7 +85,7 @@ public class Seminar
 
         for (String stu: attendees)
         {
-            build += stu + "\n";
+            build += "\t" + stu + "\n";
         }
 
         return build;
