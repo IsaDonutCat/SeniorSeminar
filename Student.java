@@ -44,14 +44,16 @@ public class Student
         return choices[ind];
     }
 
-    public boolean assignChoice (int ind, Seminar inSemi)
+    public boolean isBusy(int ind)
     {
-        if (isBusy[ind])
-            return false;
+        return isBusy[ind];
+    }
 
+    public void assignChoice (int ind, Seminar inSemi)
+    {
         semis[ind] = inSemi;
+        System.out.println("assigned" + inSemi.getName() + " at time slot " + ind);
         isBusy[ind] = true;
-        return true;
     }
 
     public void printSched()

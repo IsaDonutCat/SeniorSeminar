@@ -29,3 +29,8 @@ Repository for Q3 Senior Seminar coding assignment.
 - Finished the sorting (it turns out that there were not enough sessions given)
 - Finished assigning everyone to their seminars
 - Starting to look into how to search (possibly a parallel string ArrayList to use indexOf for?);
+
+# February 1st, 2024
+- Can't get it to not assign students vertically
+- **Just** realized that two sessions max, it's not you can have more than 2 sessions, but jsut you can have a presenter do more than 2
+- ~hear me out i should rewrite this all~

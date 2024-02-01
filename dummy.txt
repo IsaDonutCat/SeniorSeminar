@@ -1,0 +1,16 @@
+phillipsc,Catherine M. Phillips,13,14,4,11,16
+lylem,Harrison Lyle,7,1,2,6,18
+pfisterm,Grace Pfister,15,14,11,1,16
+fatuzzos,Stephen Holden Fatuzzo,1,9,16,7,2
+buechlyt,Anthony Jacob Buechly,2,5,16,3,15
+chandrakru,Ruben Chandrakumar,5,2,11,3,15
+taylors,Samuel Taylor,8,14,17,18,2
+kellara,Ava Kellar,16,11,2,1,3
+kerschnee,Eric William Kerschner,9,18,2,13,6
+rame,Emily Marie Ram,2,15,3,1,18
+sullivanj,Jack Michael Kestner Sullivan,1,16,7,8,6
+yardleyo,Olivia Audrey Yardley,15,10,1,9,2
+boazk,Kayla M. Boaz,15,18,6,10,2
+midham,Manav Dev Midha,2,12,6,16,15
+thompsond,Dylan Niles Thompson,3,2,7,10,4
+valenk,Katherine Rhea Valen,15,1,7,9,2

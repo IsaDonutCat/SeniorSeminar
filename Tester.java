@@ -167,7 +167,7 @@ public class Tester
         for (Seminar uke : sortedSemis)
         {
             numWant = uke.sessCt();
-            numWant = Math.min(5,numWant); //know this will not be the case but just in case
+            numWant = Math.min(2,numWant); //know this will not be the case but just in case
             //System.out.println(uke.getName());
             //System.out.println(numWant);
             while (numWant > 0 && coords[0] >= 0 && uke.canAssign(coords[0]))
@@ -182,7 +182,7 @@ public class Tester
             }
         }
 
-        for(int rowCt = 0; rowCt < 5; rowCt++)//for (Seminar[] rowS : totalSched)
+        /*for(int rowCt = 0; rowCt < 5; rowCt++)//for (Seminar[] rowS : totalSched)
         {
             //System.out.println(rowCt);
             for(int colCt = 0; colCt < 5; colCt++)//for (Seminar colS : rowS)
@@ -191,7 +191,7 @@ public class Tester
                 System.out.println(totalSched[rowCt][colCt].getName());
             }
             System.out.println("\n\n\n");
-        }
+        }*/
 
         sortedSemis.clear();
     }
@@ -220,38 +220,48 @@ public class Tester
 
     public static void assignStu()
     {
+        int matche;
+
         for (Student choSen : seniors)
         {   
-            for (int i = 0; i < 5; i++)
+            System.out.println(choSen.getName());
+            for (int i = 0; i < 5; i++) //represents the time slot
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 5; j++) // represents rooms
                 {
-                    if (matchChoice(choSen, totalSched[i][j].getName()) >= 0 && totalSched[i][j].hasSpot())
+                    matche = matchChoice(choSen, totalSched[i][j].getName());
+                    if (matche >= 0 && totalSched[i][j].hasSpot() && !choSen.isBusy(i))
                     {
                         totalSched[i][j].addStudent(choSen.getName());
                         choSen.assignChoice(i, totalSched[i][j]);
-                        choSen.gotChoice(matchChoice(choSen, totalSched[i][j].getName()));
-                        System.out.println("stopped searching in slot " + i);
+                        choSen.gotChoice(matche);
+                        System.out.println("break out bc choice found" + i);
                         break;
-                        
                     }
                     else if (j == 4)//final slot, most unwanted
                     {   
-                        /*while (!totalSched[i][j].hasSpot())
-                        {
+                        while (!totalSched[i][j].hasSpot())
+                        {   
                             j--;
                             if (j < 0)
-                            {System.out.println("error");}
-                        }*/
+                            {
+                                for (int err = 0; err < 5; err++)
+                                {System.out.println(totalSched[i][err].toString(err));
+                                
+                                System.out.println("error");}
+                            }
+                        }
                         totalSched[i][j].addStudent(choSen.getName());
                         choSen.assignChoice(i, totalSched[i][j]);
-                        System.out.println("stopped searching in slot " + i);
+                        System.out.println("break out bc no more achoices" + i);
                         break;
                     }
                 }
+
+                //System.out.println("broken?");
             }
-            choSen.printSched();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            //choSen.printSched();
+            System.out.println("\n\n");
         }
     }
 
@@ -259,8 +269,14 @@ public class Tester
     {
         for (int k = 0; k < 5; k++)
         {
-            if (choSenior.getChoiceID(k) >= 0 && semis.get(choSenior.getChoiceID(k)).equals(semiNarme))
+            //System.out.println(semiNarme + " " );
+            //if (choSenior.getChoiceID(k) >= 0)
+                //System.out.println(semis.get(choSenior.getChoiceID(k)).getName());
+            if (choSenior.getChoiceID(k) >= 0 && semis.get(choSenior.getChoiceID(k)).getName().equals(semiNarme))
+            {
+                System.out.println("returning ");
                 return k;
+            }
         }
         return -1;
     }
