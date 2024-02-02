@@ -14,6 +14,7 @@ public class Tester
         if (args.length != 2)
         {
             System.out.println("java Tester students.csv seminars.csv");
+            return;
         }
 
         try 
