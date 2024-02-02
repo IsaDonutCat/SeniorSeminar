@@ -7,6 +7,7 @@ public class Tester
 {
     public static ArrayList<Student> seniors = new ArrayList<Student>();
     public static ArrayList<String> senNames = new ArrayList<String>();
+    public static ArrayList<Seminar> semID;
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
     public static Seminar[][] totalSched = new Seminar[5][5];
     public static void main (String[] args)
@@ -34,7 +35,7 @@ public class Tester
                 {
                     seniors.add(new Student(parts[0], parts[1]));
                 }
-                senNames.add(parts[1]); // parallel for search function
+                senNames.add(parts[1].toLowerCase()); // parallel for search function
             }
 
             fileR.close();
@@ -60,6 +61,39 @@ public class Tester
 
         sortSemis();
         assignSemis();
+        addChoices(); // add the choices that students wanted
+        addLeft(); //add the leftovers
+
+        Scanner intro = new Scanner(System.in);
+        String next;
+
+        do
+        {
+            System.out.println("Actions: \n \t Find Student \n \t Print Master Roster \n \t Exit");
+            next = intro.nextLine().toLowerCase();
+            if (next.equals("find student"))
+            {
+                System.out.print("Please enter student name: ");
+                next = intro.nextLine().toLowerCase();
+                if (senNames.indexOf(next) < 0)
+                    System.out.println("Error: Student not found");
+                else
+                    System.out.println(seniors.get(senNames.indexOf(next)));
+            }
+            else if (next.equals("print master roster"))
+            {
+                for (int r = 0; r < 5; r++)
+                {
+                    for (int )
+                }
+            }
+            else if (!next.equals("exit"))
+            {
+                System.out.println("Error: Action not possible");
+            }
+        }
+        while (!next.equals("exit"));
+        intro.close();
     }
 
     public static void sortSemis() //sorts semis to be greatest to least
@@ -94,13 +128,13 @@ public class Tester
 
     public static void assignSemis()
     {
-        for (int r = 0; r < 5; r++)
+        for (int c = 0; c < 5; c++)
         {
-            for (int c = 0; c < 5; c++)
+            for (int r = 0; r < 5; r++)
             {
                 if (semis.get(0).canAdd(r))
                 {
-                    totalSched[r][c] = semis.get(0);
+                    totalSched[r][c] = semis.get(0).getID();
                     semis.get(0).addSess(r,c);
                 }
                 else
@@ -108,5 +142,60 @@ public class Tester
             }
         }
         semis.clear(); // seminars are no longer needed after this
+    }
+
+    public static void addChoices()
+    {
+        for (int st = 0; st < 5; st++) //cycle thru all 1st choices, then 2nd, etc etc
+        {
+            for (Student stu1 : seniors)
+            {
+                if (stu1.madeChoices())
+                {
+                    for (int a = 0; a < 5; a++)
+                    {
+                        if(totalSched[st][a].hasSpace(st) && totalSched[st][a].getID() == stu1.getChoice(st)) //if the seminar has space at the student wants it
+                        {
+                            totalSched[st][a].addStu(st, stu1.getName());
+                            stu1.assignSemi(st, totalSched[st][a]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void addLeft()
+    {
+        for (int st = 0; st < 5; st++)
+        {
+            for (Student stu2 : seniors)
+            {
+                if(!stu2.hasEverything())
+                {
+                    for (int t = 0; t < 5; t++)
+                    {
+                        if (!stu2.isBusy(t))
+                        {
+                            for (int sem = 4; sem == 0; sem--)
+                            {
+                                if (totalSched[t][sem].hasSpace(t))
+                                {
+                                    stu2.assignSemi(t, totalSched[t][sem]);
+                                    totalSched[t][sem].addStu(t, stu2.getName());
+                                    break;
+                                }
+                                if (sem == 0)
+                                {
+                                    System.out.print("error: overflow")
+                                        return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

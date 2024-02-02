@@ -47,6 +47,17 @@ public class Student
     {
         asSemis[time] = newSemi;
     }
+
+    public boolean isBusy(int time)
+    {
+        return asSemis[time] != null;
+    }
+
+    public boolean hasEverything()
+    {
+        return !(asSemis[0]==null || asSemis[1] == null || asSemis[2] == null || asSemis[3] == null || asSemis[4] == null);
+    }
+
     public String toString()
     {
         String build = "";
