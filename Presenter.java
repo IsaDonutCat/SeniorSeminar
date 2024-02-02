@@ -2,11 +2,15 @@ public class Presenter
 {
     private String name;
     private boolean[] isBusy = new boolean[5]; //default of boolean is false
-    private Seminar[] semis = new Seminar[5];
 
     public Presenter (String name)
     {
         this.name = name;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public boolean isBusy (int ind)
@@ -14,28 +18,9 @@ public class Presenter
         return isBusy[ind];
     }
 
-    public void assign(Seminar semi, int ind)
+    public void assign(int ind)
     {
         isBusy[ind] = true;
-        semis[ind] = semi;
     }
 
-    public void printSched()
-    {
-        int len = semis.length;
-
-        System.out.println (name);
-        for (int i = 0; i < len; i++)
-        {
-            if (semis[i] != null) //if there's something there
-            {
-                System.out.println("Session " + (i+1) + ": " + semis[i].getName() + " (Room " + semis[i].getRoom() + ")");
-            }
-        }
-    }
-
-    public String getName()
-    {
-        return name;
-    }
 }
