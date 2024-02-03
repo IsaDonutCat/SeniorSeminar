@@ -151,10 +151,11 @@ public class Tester
                 {
                     for (int a = 0; a < 5; a++)
                     {
-                        if(totalSched[st][a].hasSpace(st) && totalSched[st][a].getID() == stu1.getChoice(st)) //if the seminar has space at the student wants it
+                        if(totalSched[st][a].hasSpace(st) && totalSched[st][a].getID() == stu1.getChoice(st) && stu1.canAdd(st, totalSched[st][a].getID())) //if the seminar has space at the student wants it
                         {
                             totalSched[st][a].addStu(st, stu1.getName());
                             stu1.assignSemi(st, totalSched[st][a]);
+                            stu1.addedChoice(st, totalSched[st][a].getID());
                             break;
                         }
                     }
