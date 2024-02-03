@@ -2,7 +2,7 @@ public class Seminar
 {
     public Seminar (String[] parts)
     {
-        ID = Integer.parseInt(parts[0]);
+        ID = Integer.parseInt(parts[0]) - 1;
         name  = parts[1];
         lect = new Presenter(parts[2]);
     }
