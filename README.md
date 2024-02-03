@@ -16,7 +16,8 @@ Repository for Q3 Senior Seminar coding assignment.
     - wrote an equals() method inside student to hopefully be able to use indexOf() from arraylist (thanks javaDoc) \
 
 # January 24th, 2024
-
+- created a preference tallier for students' choices
+  
 # January 26th, 2024
 - Was not in class
 
@@ -34,3 +35,10 @@ Repository for Q3 Senior Seminar coding assignment.
 - Can't get it to not assign students vertically
 - **Just** realized that two sessions max, it's not you can have more than 2 sessions, but jsut you can have a presenter do more than 2
 - ~hear me out i should rewrite this all~
+
+# February 2nd, 2024
+- I ended up rewriting it
+- Made it a lot cleaner and better organized. getters' are right next to the variable theyre using, and just in general a lot more data is stored and better.
+- Since i had a better idea of what to do i was able to do it.
+- Added Session class bc seminars have sessions - could help keep track of stuff specific to a session.
+- Have not tested it since vs code hates me on my home computer so i'm writing this all in github and hoping i did theoretical coding right
