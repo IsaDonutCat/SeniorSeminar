@@ -9,7 +9,7 @@ public class Tester
     public static ArrayList<String> senNames = new ArrayList<String>();
     public static ArrayList<Seminar> semID;
     public static ArrayList<Seminar> semis = new ArrayList<Seminar>();
-    public static Seminar[][] totalSched = new Seminar[5][5];
+    public static int[][] totalSched = new int[5][5];
     public static void main (String[] args)
     {
         if (args.length != 2)
@@ -60,7 +60,6 @@ public class Tester
         }
 
         sortSemis();
-        assignSemis();
         addChoices(); // add the choices that students wanted
         addLeft(); //add the leftovers
 
@@ -84,7 +83,10 @@ public class Tester
             {
                 for (int r = 0; r < 5; r++)
                 {
-                    for (int )
+                    for (int c = 0; c < 5; c++)
+                        {
+                            System.out.println(semis.get(sched[r][c]));
+                        }
                 }
             }
             else if (!next.equals("exit"))
@@ -104,12 +106,12 @@ public class Tester
             {
                 for (int i = 0; i < 5; i++)
                 {
-
+                    semis.get(senior.getChoice(i) - 1).addChoice();
                 }
             }
         }
 
-        ArrayList<Seminar> temp = new ArrayList<Seminar>();
+        ArrayList<int> temp = new ArrayList<int>();
         int inser;
         for (Seminar sem : semis)
         {
@@ -118,30 +120,25 @@ public class Tester
             {
                 inser--;
             }
-            temp.add(inser, sem);
+            temp.add(inser, sem.getID());
         }
 
-        semis.clear(); //clears current unsorted
-        semis = temp; //sets semis to unsorted
-        temp.clear(); //clearas temp sorting array list;
-    };
-
-    public static void assignSemis()
-    {
+        int tempctr = 0;
+        
         for (int c = 0; c < 5; c++)
         {
             for (int r = 0; r < 5; r++)
             {
-                if (semis.get(0).canAdd(r))
+                if (semis.get(temp(tempctr)).canAdd(r))
                 {
-                    totalSched[r][c] = semis.get(0).getID();
-                    semis.get(0).addSess(r,c);
+                    totalSched[r][c] = semis.get(tempctr).getID();
+                    semis.get(temp(tempctr)).addSess(r,c);
                 }
                 else
-                    semis.remove(0);
+                    tempctr++;
             }
         }
-        semis.clear(); // seminars are no longer needed after this
+        temp.clear; // seminars are no longer needed after this
     }
 
     public static void addChoices()
