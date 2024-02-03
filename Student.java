@@ -42,22 +42,35 @@ public class Student
         return choices[rank];
     }
 
+    public void addedChoice(int rank)
+    {
+        choices[rank] = -1;
+    }
+
     Seminar[] asSemis = new Seminar[5];
     public void assignSemi(int time, Seminar newSemi)
     {
         asSemis[time] = newSemi;
+        semiIDs[time] = newSemi.getID();
     }
 
     public boolean isBusy(int time)
     {
         return asSemis[time] != null;
     }
-
+    
     public boolean hasEverything()
     {
         return !(asSemis[0]==null || asSemis[1] == null || asSemis[2] == null || asSemis[3] == null || asSemis[4] == null);
     }
 
+    int[] semiIDs = new int[5];
+
+    public boolean canAdd(int time, int ID)
+    {
+        return asSemis[time] != null && !semiIDs.contains(ID);
+    }
+    
     public String toString()
     {
         String build = "";
