@@ -42,3 +42,10 @@ Repository for Q3 Senior Seminar coding assignment.
 - Since i had a better idea of what to do i was able to do it.
 - Added Session class bc seminars have sessions - could help keep track of stuff specific to a session.
 - Have not tested it since vs code hates me on my home computer so i'm writing this all in github and hoping i did theoretical coding right
+# February 3rd, 2024
+- Updated Student and Tester classes to help avoid students getting assigned to the same seminars
+# February 5th, 2024
+- Fixed bugs that had not been accounted for in shifting totalSched to integers
+- Fixed inability to add students to classes due to duplication
+    - Made it so that only classes that more than 18 people chose could be added twice
+    - Also shifted the leftover seminars to order by going 1st to last instead of last to 1st
