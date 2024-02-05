@@ -2,7 +2,9 @@ public class Seminar
 {
     public Seminar (String[] parts)
     {
-        ID = Integer.parseInt(parts[0]) - 1;
+        ID = Integer.parseInt(parts[0]);
+        ID--;
+        //System.out.println(ID);
         name  = parts[1];
         lect = new Presenter(parts[2]);
     }
@@ -10,6 +12,7 @@ public class Seminar
     int ID;
     public int getID()
     {
+        //System.out.println(name);
         return ID;
     }
 
@@ -41,6 +44,7 @@ public class Seminar
 
     public void addSess(int time, int roomNum)
     {
+        //System.out.println("added " + name + " at " + time + " in " + roomNum);
         sessions[time] = new Session(roomNum);
         sessCt++;
     }
@@ -64,11 +68,13 @@ public class Seminar
 
     public boolean hasSpace(int time)
     {
+        //System.out.println(name + " at " + time);
         return sessions[time].hasSpace();
     }
 
     public void addStu(int time, String name)
     {
+        //System.out.println(time + " " + name);
         sessions[time].addStudent(name);
     }
 

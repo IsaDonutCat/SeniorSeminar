@@ -61,14 +61,20 @@ public class Student
     
     public boolean hasEverything()
     {
-        return !(asSemis[0]==null || asSemis[1] == null || asSemis[2] == null || asSemis[3] == null || asSemis[4] == null);
+        for (int i = 0; i < 5; i++)
+        {
+            if (asSemis == null)
+                return false;
+        }
+        return true;
     }
 
     int[] semiIDs = new int[5];
 
     public boolean canAdd(int time, int ID)
     {
-        return asSemis[time] != null && !semiIDs.contains(ID);
+        //System.out.println(asSemis[time] != null && semiIDs[0] != ID && semiIDs[1] != ID && semiIDs[2] != ID && semiIDs[3] != ID && semiIDs[4] != ID);
+        return asSemis[time] == null && semiIDs[0] != ID && semiIDs[1] != ID && semiIDs[2] != ID && semiIDs[3] != ID && semiIDs[4] != ID;
     }
     
     public String toString()
@@ -77,7 +83,7 @@ public class Student
         build += name.toUpperCase();
         build += "Email: " + this.email;
         for (int s = 0; s < 5; s++)
-            build += "\t Session 1:" +  asSemis[s].getName() + " in " + asSemis[s].getRoom(s);
+            build += "Session 1:" +  asSemis[s].getName() + " in " + asSemis[s].getRoom(s);
         return build;
     }
 }

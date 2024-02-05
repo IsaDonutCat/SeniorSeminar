@@ -24,18 +24,19 @@ public class Tester
             //begin reading file for students
             File stuFile = new File(args[0]);
             Scanner fileR = new Scanner(stuFile);
-            while(fileR.hasNext())
+            while(fileR.hasNextLine())
             {
-                parts = fileR.next().split(",");
+                parts = fileR.nextLine().split(",");
+                //System.out.println(parts[0]);
                 if (parts.length > 2)
                 {
                     seniors.add(new Student(parts));
                 }
                 else
                 {
-                    seniors.add(new Student(parts[0], parts[1]));
+                    seniors.add(new Student(parts[0], parts[1].strip()));
                 }
-                senNames.add(parts[1].toLowerCase()); // parallel for search function
+                senNames.add(parts[1].toLowerCase().strip()); // parallel for search function
             }
 
             fileR.close();
@@ -45,9 +46,9 @@ public class Tester
             File semiFile = new File(args[1]);
             fileR = new Scanner(semiFile);
 
-            while (fileR.hasNext())
+            while (fileR.hasNextLine())
             {
-                parts = fileR.next().split(",");
+                parts = fileR.nextLine().split(",");
                 semis.add(new Seminar(parts));
             }
 
@@ -83,10 +84,12 @@ public class Tester
             {
                 for (int r = 0; r < 5; r++)
                 {
+                    System.out.println("Slot " + (r + 1));
                     for (int c = 0; c < 5; c++)
                         {
-                            System.out.println(semis.get(sched[r][c]));
+                            System.out.println(semis.get(totalSched[r][c]).toString(r));
                         }
+                    System.out.println("\n\n");
                 }
             }
             else if (!next.equals("exit"))
@@ -111,7 +114,7 @@ public class Tester
             }
         }
 
-        ArrayList<int> temp = new ArrayList<int>();
+        ArrayList<Integer> temp = new ArrayList<Integer>();
         int inser;
         for (Seminar sem : semis)
         {
@@ -129,16 +132,17 @@ public class Tester
         {
             for (int r = 0; r < 5; r++)
             {
-                if (semis.get(temp(tempctr)).canAdd(r))
+                while(!semis.get(temp.get(tempctr)).canAdd(r))
                 {
-                    totalSched[r][c] = semis.get(tempctr).getID();
-                    semis.get(temp(tempctr)).addSess(r,c);
+                   tempctr++;
+                   //System.out.println("temp: " + semis.get(temp.get(tempctr)).getName());
                 }
-                else
-                    tempctr++;
+                totalSched[r][c] = semis.get(temp.get(tempctr)).getID();
+                //System.out.println(totalSched[r][c]);
+                semis.get(temp.get(tempctr)).addSess(r,c);
             }
         }
-        temp.clear; // seminars are no longer needed after this
+        temp.clear(); // seminars are no longer needed after this
     }
 
     public static void addChoices()
@@ -151,11 +155,13 @@ public class Tester
                 {
                     for (int a = 0; a < 5; a++)
                     {
-                        if(totalSched[st][a].hasSpace(st) && totalSched[st][a].getID() == stu1.getChoice(st) && stu1.canAdd(st, totalSched[st][a].getID())) //if the seminar has space at the student wants it
+                        //System.out.println("trying to get semi @ " + st + "in " + a + " ID " + totalSched[st][a]);
+                        if(semis.get(totalSched[st][a]).hasSpace(st) && semis.get(totalSched[st][a]).getID() == stu1.getChoice(st) && stu1.canAdd(st, semis.get(totalSched[st][a]).getID())) //if the seminar has space at the student wants it
                         {
-                            totalSched[st][a].addStu(st, stu1.getName());
-                            stu1.assignSemi(st, totalSched[st][a]);
-                            stu1.addedChoice(st, totalSched[st][a].getID());
+                            //System.out.println("trying to add student");
+                            semis.get(totalSched[st][a]).addStu(st, stu1.getName());
+                            stu1.assignSemi(st, semis.get(totalSched[st][a]));
+                            stu1.addedChoice(st);
                             break;
                         }
                     }
@@ -178,15 +184,16 @@ public class Tester
                         {
                             for (int sem = 4; sem == 0; sem--)
                             {
-                                if (totalSched[t][sem].hasSpace(t))
+                                if (semis.get(totalSched[t][sem]).hasSpace(t) && stu2.canAdd(t, sem))
                                 {
-                                    stu2.assignSemi(t, totalSched[t][sem]);
-                                    totalSched[t][sem].addStu(t, stu2.getName());
+                                    stu2.assignSemi(t, semis.get(totalSched[t][sem]));
+                                    //System.out.println("trying to add student");
+                                    semis.get(totalSched[t][sem]).addStu(t, stu2.getName());
                                     break;
                                 }
                                 if (sem == 0)
                                 {
-                                    System.out.print("error: overflow")
+                                    System.out.print("error: overflow");
                                         return;
                                 }
                             }

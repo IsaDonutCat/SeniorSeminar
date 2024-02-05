@@ -13,6 +13,7 @@ public class Session
 
     public void addStudent(String stuName)
     {
+        //System.out.println(stuName);
         attendees.add(stuName);
     }
 
@@ -32,7 +33,7 @@ public class Session
 
         for (String stu : attendees)
         {
-            build += "\t" + stu + "\n";
+            build += stu + "\n";
         }
         return build;
     }
