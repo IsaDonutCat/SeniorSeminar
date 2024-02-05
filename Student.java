@@ -2,7 +2,7 @@ public class Student
 {
     public Student(String[] parts)
     {
-        email = parts[0].strip();
+        email = parts[0].strip() + "@countryday.net";
         name = parts[1].strip();
         madeChoices = true;
 
@@ -10,9 +10,10 @@ public class Student
         {
             choices[k] = Integer.parseInt(parts[k+2]);
         }
+        
     }
 
-    public Student(String name, String email)
+    public Student(String email, String name)
     {
         this.name = name;
         this.email = email;
@@ -27,7 +28,7 @@ public class Student
     String email;
     public String getEmail()
     {
-        return email + "@countryday.net";
+        return email;
     }
 
     boolean madeChoices = false;
@@ -61,29 +62,39 @@ public class Student
     
     public boolean hasEverything()
     {
+        //System.out.println(name);
+  
         for (int i = 0; i < 5; i++)
         {
-            if (asSemis == null)
+            if (asSemis[i] == null)
                 return false;
         }
+        //System.out.println(toString());
         return true;
     }
 
-    int[] semiIDs = new int[5];
+    int[] semiIDs = {-1,-1,-1,-1,-1};
 
     public boolean canAdd(int time, int ID)
     {
         //System.out.println(asSemis[time] != null && semiIDs[0] != ID && semiIDs[1] != ID && semiIDs[2] != ID && semiIDs[3] != ID && semiIDs[4] != ID);
-        return asSemis[time] == null && semiIDs[0] != ID && semiIDs[1] != ID && semiIDs[2] != ID && semiIDs[3] != ID && semiIDs[4] != ID;
+        //System.out.println(ID + "\n now beginning for loop");
+        for (int i = 0; i < 5; i++)
+        {
+            //System.out.println(semiIDs[i]);
+            if (semiIDs[i] == ID)
+                return false;
+        }
+        return asSemis[time] == null;
     }
     
     public String toString()
     {
         String build = "";
-        build += name.toUpperCase();
-        build += "Email: " + this.email;
+        build += name.toUpperCase() + "\n";
+        build += "Email: " + this.email + "\n";
         for (int s = 0; s < 5; s++)
-            build += "Session 1:" +  asSemis[s].getName() + " in " + asSemis[s].getRoom(s);
+            build += "Session " + (s+1) + ": "  +  asSemis[s].getName() + " in " + asSemis[s].getRoom(s) + "\n";
         return build;
     }
 }

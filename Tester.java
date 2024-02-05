@@ -35,6 +35,7 @@ public class Tester
                 else
                 {
                     seniors.add(new Student(parts[0], parts[1].strip()));
+                    //System.out.println(parts[1].strip());
                 }
                 senNames.add(parts[1].toLowerCase().strip()); // parallel for search function
             }
@@ -84,7 +85,7 @@ public class Tester
             {
                 for (int r = 0; r < 5; r++)
                 {
-                    System.out.println("Slot " + (r + 1));
+                    System.out.println("Slot " + (r + 1) + ":");
                     for (int c = 0; c < 5; c++)
                         {
                             System.out.println(semis.get(totalSched[r][c]).toString(r));
@@ -132,7 +133,7 @@ public class Tester
         {
             for (int r = 0; r < 5; r++)
             {
-                while(!semis.get(temp.get(tempctr)).canAdd(r))
+                if(!semis.get(temp.get(tempctr)).canAdd(r))
                 {
                    tempctr++;
                    //System.out.println("temp: " + semis.get(temp.get(tempctr)).getName());
@@ -172,35 +173,41 @@ public class Tester
 
     public static void addLeft()
     {
-        for (int st = 0; st < 5; st++)
-        {
+        int sem;
             for (Student stu2 : seniors)
             {
+                //System.out.println(stu2.getName() + stu2.hasEverything());
                 if(!stu2.hasEverything())
                 {
+                    //System.out.println("doesnt have everything");
                     for (int t = 0; t < 5; t++)
                     {
-                        if (!stu2.isBusy(t))
+                        sem = 0;
+                        while (!stu2.isBusy(t))
                         {
-                            for (int sem = 4; sem == 0; sem--)
+                            
+                            //System.out.println(stu2.getName() + " is not busy @ " + t);
+                            //System.out.println(sem);
+                            if (semis.get(totalSched[t][sem]).hasSpace(t))
                             {
-                                if (semis.get(totalSched[t][sem]).hasSpace(t) && stu2.canAdd(t, sem))
+                                //System.out.println("has space");
+                                if (stu2.canAdd(t, sem))
                                 {
                                     stu2.assignSemi(t, semis.get(totalSched[t][sem]));
                                     //System.out.println("trying to add student");
                                     semis.get(totalSched[t][sem]).addStu(t, stu2.getName());
                                     break;
                                 }
-                                if (sem == 0)
-                                {
-                                    System.out.print("error: overflow");
-                                        return;
-                                }
                             }
+                            if (sem == 4)
+                            {
+                                //System.out.print("error: overflow");
+                                    return;
+                            }
+                            sem++;
                         }
                     }
                 }
             }
         }
-    }
 }

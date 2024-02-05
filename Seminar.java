@@ -29,10 +29,12 @@ public class Seminar
     }
 
     int sessCt = 0;
-
+    int maxSess = 2;
     public boolean canAdd(int time)
     {
-        return (!lect.isBusy(time) && sessCt < 2);
+        if (chosen < 18)
+            maxSess = 1;
+        return (!lect.isBusy(time) && sessCt < maxSess);
     }
 
     Session[] sessions = new Session[5];
