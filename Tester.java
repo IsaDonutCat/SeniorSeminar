@@ -191,7 +191,7 @@ public class Tester
                             if (semis.get(totalSched[t][sem]).hasSpace(t))
                             {
                                 //System.out.println("has space");
-                                if (stu2.canAdd(t, sem))
+                                if (stu2.canAdd(t, sem, semis.get(totalSched[t][sem]).getName()))
                                 {
                                     stu2.assignSemi(t, semis.get(totalSched[t][sem]));
                                     //System.out.println("trying to add student");
