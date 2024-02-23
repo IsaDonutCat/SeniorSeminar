@@ -49,10 +49,12 @@ public class Student
     }
 
     Seminar[] asSemis = new Seminar[5];
+    ArrayList<String> semisGiv = new ArrayList<String>();
     public void assignSemi(int time, Seminar newSemi)
     {
         asSemis[time] = newSemi;
         semiIDs[time] = newSemi.getID();
+        semisGiv.add(newSemi.getName());
     }
 
     public boolean isBusy(int time)
@@ -74,8 +76,8 @@ public class Student
     }
 
     int[] semiIDs = {-1,-1,-1,-1,-1};
-
-    public boolean canAdd(int time, int ID)
+    
+    public boolean canAdd(int time, int ID, String name)
     {
         //System.out.println(asSemis[time] != null && semiIDs[0] != ID && semiIDs[1] != ID && semiIDs[2] != ID && semiIDs[3] != ID && semiIDs[4] != ID);
         //System.out.println(ID + "\n now beginning for loop");
@@ -85,6 +87,8 @@ public class Student
             if (semiIDs[i] == ID)
                 return false;
         }
+        if (semisGiv.contains(name))
+            return false;
         return asSemis[time] == null;
     }
     
