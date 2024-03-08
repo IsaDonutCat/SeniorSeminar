@@ -1,89 +1,71 @@
 public class Seminar
 {
-    public Seminar (String[] parts)
-    {
-        ID = Integer.parseInt(parts[0]);
-        ID--;
-        //System.out.println(ID);
-        name  = parts[1];
-        lect = new Presenter(parts[2]);
-    }
-
-    int ID;
-    public int getID()
-    {
-        //System.out.println(name);
-        return ID;
-    }
-
     String name;
-    public String getName()
-    {
-        return name;
-    }
-
-    Presenter lect;
-    public String getLectName()
-    {
-        return lect.getName();
-    }
-
-    int sessCt = 0;
-    int maxSess = 2;
-    public boolean canAdd(int time)
-    {
-        if (chosen < 18)
-            maxSess = 1;
-        return (!lect.isBusy(time) && sessCt < maxSess);
-    }
-
+    String lectName;
+    int ID;
     Session[] sessions = new Session[5];
+    int stuPrefs = 0;
+    int sessCt;
 
-    public boolean hasSess (int time)
+    public Seminar(String[] parts)
     {
-        return (sessions[time] != null);
+        ID = Integer.parseInt(parts[0]) - 1;
+        name = parts[1];
+        lectName = parts[2];
     }
 
-    public void addSess(int time, int roomNum)
+    public int getId()
+    {return ID;}
+
+    public String getName()
+    {return name;}
+
+    public String getLectName()
+    {return lectName;}
+
+    public void addPref()
+    {stuPrefs++;}
+
+    public int getPrefCt()
+    {return stuPrefs;}
+
+    public void addSession(int time, int room)
     {
-        //System.out.println("added " + name + " at " + time + " in " + roomNum);
-        sessions[time] = new Session(roomNum);
+        sessions[time] = new Session(room);
         sessCt++;
     }
 
-    int chosen = 0;
-
-    public void addChoice()
+    public boolean canAddSession()
     {
-        chosen++;
+        return (sessCt < stuPrefs / 8 && sessCt < 2);
     }
 
-    public int getPrefCt()
+    public boolean canAddStudent(int time)
     {
-        return chosen;
+        return sessions[time].getStuCt() < 16;
     }
 
-    public int getRoom(int time)
+    public Session getSess(int time)
     {
-        return sessions[time].getRoom();
+        return sessions[time];
     }
 
-    public boolean hasSpace(int time)
+    public void addStudent(int time, Student stu)
     {
-        //System.out.println(name + " at " + time);
-        return sessions[time].hasSpace();
+        sessions[time].addStudent(stu);
     }
 
-    public void addStu(int time, String name)
+    public String toString()
     {
-        //System.out.println(time + " " + name);
-        sessions[time].addStudent(name);
-    }
-
-    public String toString (int time)
-    {
-        String build = name + "\n";
-        build += sessions[time];
+        String build = name.toUpperCase();
+        build += "\n" + lectName + "\n";
+        for (int e = 0; e < 5; e++)
+        {   
+            if (sessions[e] != null)
+            {
+                build += sessions[e] + "\n";
+            }
+        }
         return build;
     }
 }
