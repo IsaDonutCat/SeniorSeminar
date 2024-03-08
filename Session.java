@@ -9,17 +9,29 @@ public class Session
         roomNum = room;
     }
 
-    ArrayList<String> attendees = new ArrayList<String>();
+    ArrayList<Student> attendees = new ArrayList<Student>();
 
-    public void addStudent(String stuName)
+    public void addStudent(Student stuName)
     {
         //System.out.println(stuName);
         attendees.add(stuName);
     }
 
-    public boolean hasSpace()
+    public int alsoWants(int semi)
     {
-        return attendees.size() < 16;
+        int ans = 0;
+        for (Student stu : attendees)
+        {
+            if (stu.hasPrefFor(semi))
+                ans++;
+        }
+
+        return ans;
+    }
+
+    public int getStuCt()
+    {
+        return attendees.size();
     }
 
     public int getRoom()
@@ -31,9 +43,9 @@ public class Session
     {
         String build = "Room " + (roomNum + 101) + "\n";
 
-        for (String stu : attendees)
+        for (Student stu : attendees)
         {
-            build += stu + "\n";
+            build += stu.getName() + "\n";
         }
         return build;
     }
