@@ -40,7 +40,7 @@ public class Tester
                 studentIn = fileIn.nextLine().split(",");
                 seniors.add(new Student(studentIn));
                 stuNames.add(studentIn[1]);
-                System.out.println(studentIn[1]);
+                //System.out.println(studentIn[1]);
             }
             fileIn.close();
 
@@ -112,7 +112,9 @@ public class Tester
                 {
                     for (int u = 0; u < 5; u++)
                     {
+                        System.out.println(seminars.get(sessIDs[t][u]).getName().toUpperCase());
                         System.out.println(seminars.get(sessIDs[t][u]).getSess(t));
+                        System.out.println("\n\n");
                     }
                 }
             }
@@ -123,11 +125,11 @@ public class Tester
 
     public static int ignoreCaseStu(String name)
     {
-        int len = stuNames.size();
+        int len = seniors.size();
         for (int v = 0; v < len; v++)
         {
-            System.out.println(stuNames.get(v));
-            if (stuNames.get(v).equalsIgnoreCase(name))
+            //System.out.println(stuNames.get(v));
+            if (seniors.get(v).getName().equalsIgnoreCase(name))
             {
                 return v;
             }
@@ -138,10 +140,10 @@ public class Tester
 
     public static int ignoreCaseLect(String name)
     {
-        int len = lectNames.size();
+        int len = lecturers.size();
         for (int v = 0; v < len; v++)
         {
-            if (lectNames.get(v).equalsIgnoreCase(name))
+            if (lecturers.get(v).getName().equalsIgnoreCase(name))
             {
                 return v;
             }
