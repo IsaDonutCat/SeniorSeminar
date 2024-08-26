@@ -1,73 +1,71 @@
-import java.util.ArrayList;
-
 public class Seminar
 {
-    private Presenter lect;
-    private String name;
-    private int[] rooms = {-1,-1,-1,-1,-1};
-    private int prefs = 0;
-    private ArrayList<String> attendees = new ArrayList<String>();
+    String name;
+    String lectName;
+    int ID;
+    Session[] sessions = new Session[5];
+    int stuPrefs = 0;
+    int sessCt;
 
-    public int getPref()
+    public Seminar(String[] parts)
     {
-        return prefs;
+        ID = Integer.parseInt(parts[0]) - 1;
+        name = parts[1];
+        lectName = parts[2];
     }
 
-    public Seminar (String name, String presenter)
-    {
-        lect = new Presenter(presenter);
-        this.name = name;
-    }
-
-    public void addPref()
-    {
-        prefs++;
-    }
-
-    public int sessCt()
-    {
-        if (prefs % 16 >= 8)
-            return prefs/16 + 1;
-        else
-            return prefs/16;
-    }
-
-    public boolean extraSess()
-    {
-        return (prefs % 16 == 0 || prefs % 16 > 7);
-    }
-
-    public boolean canAssign(int slotTime)
-    {
-        if (lect.isBusy(slotTime))
-            return false;
-        else
-            return true;
-    }
-
-    public void assign(int slotTime, int roomNum)
-    {
-        lect.assign(this, slotTime);
-        rooms[slotTime] = roomNum;
-    }
+    public int getId()
+    {return ID;}
 
     public String getName()
+    {return name;}
+
+    public String getLectName()
+    {return lectName;}
+
+    public void addPref()
+    {stuPrefs++;}
+
+    public int getPrefCt()
+    {return stuPrefs;}
+
+    public void addSession(int time, int room)
     {
-        return name;
+        sessions[time] = new Session(room);
+        sessCt++;
     }
 
-    public int getRoom(int ind)
+    public boolean canAddSession()
     {
-        return rooms[ind];
+        return (sessCt < stuPrefs / 8 && sessCt < 2);
     }
 
-    public boolean hasSpot()
+    public boolean canAddStudent(int time)
     {
-        return (attendees.size() < 16);
-    } 
+        return sessions[time].getStuCt() < 16;
+    }
 
-    public void addStudent(String stuName)
+    public Session getSess(int time)
     {
-        attendees.add(stuName);
+        return sessions[time];
+    }
+
+    public void addStudent(int time, Student stu)
+    {
+        sessions[time].addStudent(stu);
+    }
+
+    public String toString()
+    {
+        String build = name.toUpperCase();
+        build += "\n" + lectName + "\n";
+        for (int e = 0; e < 5; e++)
+        {   
+            if (sessions[e] != null)
+            {
+                build += sessions[e] + "\n";
+            }
+        }
+        return build;
     }
 }

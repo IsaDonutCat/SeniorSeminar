@@ -1,38 +1,39 @@
 public class Presenter
 {
+    private boolean[] isBusy = {false, false, false, false, false}; //default of boolean is false
+    private int[] roomNum = {-1,-1,-1,-1,-1};
+    private String[] presenting = new String[5];
     private String name;
-    private boolean[] isBusy = new boolean[5]; //default of boolean is false
-    private Seminar[] semis = new Seminar[5];
 
-    public Presenter (String name)
+    public Presenter(String name)
     {
         this.name = name;
     }
-
     public boolean isBusy (int ind)
     {
         return isBusy[ind];
     }
 
-    public void assign(Seminar semi, int ind)
+    public void assign(int ind, String seminar, int roomNum)
     {
         isBusy[ind] = true;
-        semis[ind] = semi;
+        presenting[ind] = seminar;
+        this.roomNum[ind] = roomNum + 101;
     }
 
-    public void printSched()
+    public String toString()
     {
-        int len = semis.length;
-
-        System.out.println (name);
-        for (int i = 0; i < len; i++)
+        String build = "";
+        build += name.toUpperCase();
+        for (int i = 0; i < 5; i++)
         {
-            if (semis[i] != null) //if there's something there
+            if (roomNum[i] != -1)
             {
-                System.out.println("Session " + (i+1) + ": " + semis[i].getName() + " (Room " + semis[i].getRoom(i) + ")");
+                build += "\n" + presenting[i].toUpperCase();
+                build += " in " + roomNum + " in time slot " + i;
             }
         }
-    }
 
-
+        return build;
+    };
 }

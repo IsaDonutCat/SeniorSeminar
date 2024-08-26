@@ -1,66 +1,148 @@
+import java.util.ArrayList;
+
 public class Student
 {
-    private boolean hasChosen;
-    private int[] choices = new int[5];
-    private String name;
-    private String email;
-    private Seminar[] semis = new Seminar[5];
-    private boolean[] isBusy = new boolean[5];
+    String name;
+    String email;
+    int[] roomNums = { -1, -1, -1, -1, -1};
+    String[] sessionNames = new String[5];
+    int[] semiPrefs = { -1, -1, -1, -1, -1};
+    boolean hadPrefs;
+    ArrayList<Integer> sessIDs = new ArrayList<Integer>();
+    /**
+     * Student constructor
+     * sets email, name and if there are prefs 
+     * it sets them but otherwise sets hadPrefs to false
+     * @param infoParts
+     */
 
-    public Student (String inEmail, String inName, int inChoice1, int inChoice2, int inChoice3, int inChoice4, int inChoice5)
+    public Student(String[] infoParts)
     {
-        hasChosen = true; //this student has made the 5 choices
+        email = infoParts[0].strip() + "@countryday.net";
+        name = infoParts[1].strip();
+        if (infoParts.length >= 7)
+        {
+            hadPrefs = true;
+            for (int a = 0; a < 5; a++)
+            {
+                semiPrefs[a] = Integer.parseInt(infoParts[2+a].strip()) - 1;
+            }
+        }
+        else
+        {
+            hadPrefs = false;
+        }
+    }
+    
 
-        name = inName;
-        email = inEmail;
-
-        //minus 1 accounts for human counting -> array list indexes
-        choices[0] = inChoice1 - 1;
-        choices[1] = inChoice2 - 1;
-        choices[2] = inChoice3 - 1;
-        choices[3] = inChoice4 - 1;
-        choices[4] = inChoice5 - 1;
+    /**
+     * Getters
+     * @return
+     */
+    public boolean hadPrefs()
+    {
+        return hadPrefs;
     }
 
-    public Student (String inEmail, String inName)
+    public String getName()
     {
-        hasChosen = false; //this student has made no choices
-
-        name = inName;
-        email = inEmail;
+        return name;
     }
 
-    public int getChoiceID (int ind)
+    public String getEmail()
     {
-        return choices[ind];
+        return email;
     }
 
-    public boolean assignChoice (int ind, Seminar inSemi)
+    public int getPref(int index)
     {
-        if (isBusy[ind])
-            return false;
-
-        semis[ind] = inSemi;
-        isBusy[ind] = true;
-        return true;
+        return semiPrefs[index];
     }
 
-    public void printSched()
+    public boolean hasPrefFor(int value)
     {
-        System.out.println(name + "'s Schedule");
-        System.out.println(email + "@countryday.net");
-        System.out.println("Session 1: " + semis[0].getName() + "(Room " + semis[0].getRoom(0) + ")");
-        System.out.println("Session 2: " + semis[1].getName() + "(Room " + semis[1].getRoom(1) + ")");
-        System.out.println("Session 3: " + semis[2].getName() + "(Room " + semis[2].getRoom(2) + ")");
-        System.out.println("Session 4: " + semis[3].getName() + "(Room " + semis[3].getRoom(3) + ")");
-        System.out.println("Session 5: " + semis[4].getName() + "(Room " + semis[4].getRoom(4) + ")");
+        if (hadPrefs() && !sessIDs.contains(value))
+        {
+            for (int i : semiPrefs)
+            {
+                if (i == value)
+                    return true;
+            }
+
+        }
+        return false;
     }
 
-    public boolean equals(String compName)
+    /**
+     * overloaded method. 
+     * one has
+     * @param prefAt
+     * and one doesnt. the prefAt just means that seminar was one the student wanted
+     * @param time
+     * @param room
+     * @param newSession
+     */
+
+    public void assignSession(int time, int room, Seminar newSession)
     {
-        return compName.equals(name);
+        sessIDs.add(newSession.getId());
+        roomNums[time] = room + 101;
+        sessionNames[time] = newSession.getName();
     }
 
-    public boolean hasChosen()
-    {return hasChosen;}
+    /**
+     * tests to see if the seminar (using ID) is one the person wanted
+     * @param semiId
+     * @return boolean
+     */
+    public boolean hasPref(int semiId)
+    {
+        for (int b : semiPrefs)
+        {
+            if (semiId == b)
+            {return true;}
+        }
+        return false;
+    }
+
+    /**
+     * so basically the roomNum hasn't been assigned, meaning there's no session there
+     * @param time
+     * @return
+     */
+    public boolean canAdd(int time, int semId)
+    {
+        return !sessIDs.contains(semId) && (roomNums[time] == -1);
+    }
+
+    public String toString()
+    {
+        String build = "";
+        build += name.toUpperCase();
+        build += "\n" + email;
+
+        for (int c = 0; c < 5; c++)
+        {
+            build += "\n" + sessionNames[c] + " in Room" + roomNums[c];
+        }
+
+        build += "\n";
+
+        return build;
+    }
+
+    public boolean hasEmpty()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if(roomNums[i] == -1)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasSess(int time)
+    {
+        return (roomNums[time] != -1);
+    }
 }
